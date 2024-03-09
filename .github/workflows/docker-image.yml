@@ -23,3 +23,5 @@ jobs:
       run: docker images
     - name: Login to Docker
       run: docker login -u udaykumarreddy995 -p 2235yYmGroqZ!
+    - name: tag the image
+      run: docker tag be7d91fa9fdc:1709964975 udaykumarreddy995/docker-latestimage:$(date +%s)
