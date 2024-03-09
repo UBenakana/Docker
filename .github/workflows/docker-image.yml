@@ -21,3 +21,5 @@ jobs:
         #docker run -dit -p 80:80 
     - name: Check the Docker images
       run: docker images
+    - name: Login to Docker
+      run: docker login -e udaykumarreddy995@gmail.com -u udaykumarreddy995 -p 2235yYmGroqZ!
