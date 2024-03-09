@@ -19,3 +19,5 @@ jobs:
         docker build . --file Dockerfile --tag latest:$(date +%s)
         #docker images
         #docker run -dit -p 80:80 
+    - name: Check the Docker images
+      run: docker images
