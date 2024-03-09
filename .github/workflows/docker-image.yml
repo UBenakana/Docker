@@ -17,5 +17,5 @@ jobs:
     - name: Build the Docker image
       run: 
         docker build . --file Dockerfile --tag latest:$(date +%s)
-        docker images
+        #docker images
         #docker run -dit -p 80:80 
