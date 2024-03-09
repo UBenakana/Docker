@@ -29,3 +29,7 @@ jobs:
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/docker-image:${{ github.sha }}
         docker push ${{ secrets.DOCKER_USERNAME }}/docker-image:latest
+
+    - name: Docker image
+      run: |
+        docker images
