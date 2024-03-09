@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: 
-        docker build . --file Dockerfile --tag Docker-LatestImage:$(date +%s)
+        docker build . --file Dockerfile --tag docker-latestimage:$(date +%s)
         #docker images
         #docker run -dit -p 80:80 
     - name: Check the Docker images
