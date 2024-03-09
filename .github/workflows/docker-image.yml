@@ -34,6 +34,6 @@ jobs:
       run: |
         docker run -dit -p 8080:80 docker-image:${{ github.sha }}
 
-    - name: Docker image
+    - name: Test the container
       run: |
-        docker images
+        http://localhost:8080
