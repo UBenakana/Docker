@@ -13,27 +13,30 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Login to ACR
+      with:
+        login-server: democontainerregistry7.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
     - name: Build Docker image
       run: |
-        docker build . --file Dockerfile --tag docker-image:${{ github.sha }}
+        docker build . --file Dockerfile --tag democontainerregistry7.azurecr.io/docker-image:${{ github.sha }}
 
-    - name: Login to Docker Hub
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+    #- name: Tag Docker image
+    #  run: |
+    #    docker tag docker-image:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/docker-image:${{ github.sha }}
+    #    docker tag docker-image:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/docker-image:latest
 
-    - name: Tag Docker image
-      run: |
-        docker tag docker-image:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/docker-image:${{ github.sha }}
-        docker tag docker-image:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/docker-image:latest
-
-    - name: Push Docker image
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/docker-image:${{ github.sha }}
-        docker push ${{ secrets.DOCKER_USERNAME }}/docker-image:latest
+  #  - name: Push Docker image
+  #    run: |
+  #      docker push ${{ secrets.DOCKER_USERNAME }}/docker-image:${{ github.sha }}
+  #      docker push ${{ secrets.DOCKER_USERNAME }}/docker-image:latest
         
-    - name: Run Docker Container
-      run: |
-        docker run -dit -p 8080:80 docker-image:${{ github.sha }}
+  #  - name: Run Docker Container
+  #    run: |
+  #      docker run -dit -p 8080:80 docker-image:${{ github.sha }}
 
-    - name: Test the container
-      run: |
-        curl -I http://localhost:8080
+   # - name: Test the container
+   #   run: |
+   #     curl -I http://localhost:8080
