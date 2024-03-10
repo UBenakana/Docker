@@ -23,6 +23,10 @@ jobs:
       run: |
         docker build . --file Dockerfile --tag democontainerregistry7.azurecr.io/docker-image:${{ github.sha }}
 
+    - name: Docker images
+      run: |
+        docker images 
+
     #- name: Tag Docker image
     #  run: |
     #    docker tag docker-image:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/docker-image:${{ github.sha }}
