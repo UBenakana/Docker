@@ -19,9 +19,10 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - name: Build Docker image
+    - name: Build and push Docker image
       run: |
         docker build . --file Dockerfile --tag democontainerregistry7.azurecr.io/docker-image:${{ github.sha }}
+        docker push democontainerregistry7.azurecr.io/docker-image:${{ github.sha }}
 
     - name: Docker images
       run: |
